@@ -1,0 +1,17 @@
+{
+  "name": "electron-react-preboot",
+  "productName": "electron-react-preboot",
+  "version": "1.0.0",
+  "description": "A teeny, tiny boilerplate for an Electron Application + React.",
+  "main": "./main.bundle.js",
+  "author": {
+    "name": "Sebastian Döll",
+    "email": "sebastian@katallaxie.me",
+    "url": "https://github.com/katallaxie"
+  },
+  "scripts": {
+    "postinstall": "npm rebuild --runtime=electron --target=1.6.11 --disturl=https://atom.io/download/atom-shell --build-from-source"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

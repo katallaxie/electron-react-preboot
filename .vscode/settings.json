@@ -1,0 +1,20 @@
+{
+  "javascript.validate.enable": false,
+  "search.exclude": {
+    ".git": true,
+    ".eslintcache": true,
+    "app": true,
+    "dll": true,
+    "release": true,
+    "node_modules": true,
+    "npm-debug.log.*": true,
+    "test/**/__snapshots__": true,
+    "yarn.lock": true
+  },
+  "tslint.enable": true,
+  "tslint.autoFixOnSave": false,
+  "typescript.tsdk": "node_modules/typescript/lib/",
+  "tslint.exclude": "**/config/**/*.ts",
+  "editor.formatOnSave": true,
+  "vsicons.presets.angular": true
+}
