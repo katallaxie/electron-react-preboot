@@ -41,5 +41,6 @@ app
 dist
 dll
 
+.awcache
 .idea
 npm-debug.log.*
