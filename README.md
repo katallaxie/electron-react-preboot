@@ -6,6 +6,7 @@
 
 [![Taylor Swift](https://img.shields.io/badge/secured%20by-taylor%20swift-brightgreen.svg)](https://twitter.com/SwiftOnSecurity)
 [![Volkswagen](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
+[![TypeScript](https://badges.frapsoft.com/typescript/awesome/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![Build Status](https://travis-ci.org/katallaxie/electron-react-preboot.svg?branch=master)](https://travis-ci.org/katallaxie/electron-react-preboot)
 [![Greenkeeper badge](https://badges.greenkeeper.io/katallaxie/electron-react-preboot.svg)](https://greenkeeper.io/)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
