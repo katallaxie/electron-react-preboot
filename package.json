@@ -143,7 +143,7 @@
     "react-router-dom": "^4.1.2",
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
-    "redux-observable": "^0.14.1",
+    "redux-observable": "^0.15.0",
     "redux-offline": "^2.0.0",
     "redux-persist": "^4.8.2",
     "redux-thunk": "^2.2.0",
