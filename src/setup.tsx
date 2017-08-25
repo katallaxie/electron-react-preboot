@@ -5,36 +5,36 @@ import App from './app';
 import history from './history';
 import setupStore from './store';
 
-interface Props {}
+interface Props { }
 
 interface State {
-  isHydrating: boolean;
-  store: any;
+	isHydrating: boolean;
+	store: any;
 }
 
 export default class Setup extends React.Component<Props, State> {
-  public state: State = {
-    isHydrating: true,
-    store: setupStore(() => this.setState({ isHydrating: false }))
-  };
+	public state: State = {
+		isHydrating: true,
+		store: setupStore(() => this.setState({ isHydrating: false }))
+	};
 
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  render() {
-    const { isHydrating, store } = this.state;
+	public render() {
+		const { isHydrating, store } = this.state;
 
-    if (isHydrating) {
-      return null;
-    }
+		if (isHydrating) {
+			return null;
+		}
 
-    return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
+		return (
+			<Provider store={store}>
+				<ConnectedRouter history={history}>
+					<App />
+				</ConnectedRouter>
+			</Provider>
+		);
+	}
 }
