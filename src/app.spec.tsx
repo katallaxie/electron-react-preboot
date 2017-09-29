@@ -1,6 +1,9 @@
 import App from "./app";
 import React from "react";
-import { mount } from "enzyme";
+import { mount, configure } from "enzyme";
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 test("App renders the welcome test inside", () => {
   const wrapper = mount(<App />);
