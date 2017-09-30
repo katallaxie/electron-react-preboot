@@ -12,7 +12,7 @@
     "yarn.lock": true
   },
   "tslint.enable": true,
-  "tslint.autoFixOnSave": false,
+  "tslint.autoFixOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib/",
   "tslint.exclude": "**/config/**/*.ts",
   "editor.formatOnSave": true,
