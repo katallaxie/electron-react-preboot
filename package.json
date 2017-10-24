@@ -149,7 +149,7 @@
     "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
     "redux-offline": "^2.0.0",
-    "redux-persist": "^4.8.2",
+    "redux-persist": "^5.0.0",
     "redux-thunk": "^2.2.0",
     "rxjs": "^5.4.2",
     "source-map-support": "^0.5.0",
