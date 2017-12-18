@@ -91,7 +91,7 @@
     "file-loader": "^1.1.0",
     "html-webpack-plugin": "^2.29.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^21.0.0",
+    "jest": "^22.0.0",
     "jsdom": "^11.0.0",
     "postcss-sass": "^0.2.0",
     "prettier": "^1.5.3",
