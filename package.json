@@ -108,7 +108,7 @@
     "style-loader": "^0.19.0",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^18.0.0",
-    "ts-jest": "^21.0.0",
+    "ts-jest": "^22.0.0",
     "ts-node": "^3.2.1",
     "tslib": "^1.7.1",
     "tslint": "^5.5.0",
