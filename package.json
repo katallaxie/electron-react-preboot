@@ -154,7 +154,7 @@
     "rxjs": "^5.4.2",
     "source-map-support": "^0.5.0",
     "styled-components": "^2.1.1",
-    "styled-tools": "^0.3.0",
+    "styled-tools": "^0.4.0",
     "tslint-react": "^3.0.0"
   },
   "devEngines": {
