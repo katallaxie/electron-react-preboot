@@ -1,3 +1,3 @@
-import * as Path from "path";
+import * as Path from 'path'
 
-export const root = Path.join.bind(Path, Path.resolve(__dirname, ".."));
+export const root = Path.join.bind(Path, Path.resolve(__dirname, '..'))

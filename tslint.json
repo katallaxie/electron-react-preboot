@@ -1,8 +1,26 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
   "rulesDirectory": [],
   "rules": {
-    "no-console": [true, "time", "timeEnd", "trace"],
-    "quotemark": [true, "single"]
+    "semicolon": [
+      true,
+      "never"
+    ],
+    "interface-name": false,
+    "no-console": [
+      true,
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "no-object-literal-type-assertion": false
   }
 }

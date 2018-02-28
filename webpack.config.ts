@@ -1,221 +1,227 @@
-import { spawn } from "child_process";
-import * as Path from "path";
-import * as WebpackMerge from "webpack-merge";
+import { spawn } from 'child_process'
+import * as Path from 'path'
+import * as WebpackMerge from 'webpack-merge'
 
-import { root } from "./config/helpers";
+import { root } from './config/helpers'
 
 import {
-  DefaultDevConfig,
-  DefaultCommonConfig,
-  DefaultProdConfig,
-  DefaultMainConfig
-} from "./config/default";
+	CustomCommonConfig,
+	CustomDevConfig,
+	CustomProdConfig
+} from './config/custom'
 import {
-  CustomDevConfig,
-  CustomCommonConfig,
-  CustomProdConfig
-} from "./config/custom";
-import { Externals } from "./config/dll";
+	DefaultCommonConfig,
+	DefaultDevConfig,
+	DefaultMainConfig,
+	DefaultProdConfig
+} from './config/default'
+import { Externals } from './config/dll'
 
 // env
-const EVENT = process.env.npm_lifecycle_event;
-const ENV = process.env.NODE_ENV || "development";
+const EVENT = process.env.npm_lifecycle_event
+const ENV = process.env.NODE_ENV || 'development'
 
-const port = process.env.PORT || 1212;
+const port = process.env.PORT || 1212
 
 // config
 const EnvConfig = {
-  isDev: ENV === "development",
-  isMain: EVENT.includes("main")
-};
+	isDev: ENV === 'development',
+	isMain: EVENT.includes('main')
+}
 
 // common
 const CommonConfig = () => {
-  const config = <WebpackConfig>{};
+	const config = {} as WebpackConfig
 
-  config.module = {
-    rules: [...DefaultCommonConfig().rules, ...CustomCommonConfig.rules]
-  };
+	config.module = {
+		rules: [...DefaultCommonConfig().rules, ...CustomCommonConfig.rules]
+	}
 
-  config.plugins = [
-    ...DefaultCommonConfig().plugins,
-    ...CustomCommonConfig.plugins
-  ];
+	config.plugins = [
+		...DefaultCommonConfig().plugins,
+		...CustomCommonConfig.plugins
+	]
 
-  config.externals = Externals;
+	config.externals = Externals
 
-  config.node = {
-    __dirname: false,
-    __filename: false
-  };
+	config.node = {
+		__dirname: false,
+		__filename: false
+	}
 
-  return config;
-};
+	return config
+}
 
 // dev
 const DevConfig = () => {
-  const config = <WebpackConfig>{};
+	const config = {} as WebpackConfig
 
-  config.devtool = "source-map";
+	config.devtool = 'source-map'
 
-  config.target = "electron-renderer";
+	config.mode = 'development'
 
-  config.externals = ["fsevents", "crypto-browserify"];
+	config.target = 'electron-renderer'
 
-  config.module = {
-    rules: [...DefaultDevConfig.rules, ...CustomDevConfig.rules]
-    // noParse: [/remote-redux-devtools/]
-  };
+	config.externals = ['fsevents', 'crypto-browserify']
 
-  config.plugins = [...DefaultDevConfig.plugins, ...CustomDevConfig.plugins];
+	config.module = {
+		rules: [...DefaultDevConfig.rules, ...CustomDevConfig.rules]
+		// noParse: [/remote-redux-devtools/]
+	}
 
-  config.resolve = {
-    cacheWithContext: false,
-    modules: [root("src"), "node_modules"]
-  };
+	config.plugins = [...DefaultDevConfig.plugins, ...CustomDevConfig.plugins]
 
-  config.entry = {
-    app: [
-      "react-hot-loader/patch",
-      `webpack-dev-server/client?http://localhost:${port}/`,
-      "webpack/hot/only-dev-server",
-      "./src/boot"
-    ]
-  };
+	config.resolve = {
+		cacheWithContext: false,
+		modules: [root('src'), 'node_modules']
+	}
 
-  config.output = {
-    path: root("app"),
-    filename: "app.bundle.js",
-    sourceMapFilename: "[file].map"
-    // chunkFilename: '[id].chunk.js'
-  };
+	config.entry = {
+		app: [
+			'react-hot-loader/patch',
+			`webpack-dev-server/client?http://localhost:${port}/`,
+			'webpack/hot/only-dev-server',
+			'./src/boot'
+		]
+	}
 
-  config.devServer = {
-    port,
-    publicPath: `http://localhost:${port}/`,
-    compress: false,
-    noInfo: false,
-    // stats: 'errors-only',
-    inline: true,
-    lazy: false,
-    hot: true,
-    headers: { "Access-Control-Allow-Origin": "*" },
-    contentBase: Path.join(__dirname, "app"),
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 100,
-      ignored: /node_modules/
-    },
-    historyApiFallback: {
-      verbose: true,
-      disableDotRule: false
-    },
-    setup() {
-      if (process.env.START_ELECTRON) {
-        spawn("npm", ["run", "electron:dev"], {
-          shell: true,
-          env: process.env,
-          stdio: "inherit"
-        })
-          .on("close", code => process.exit(code))
-          .on("error", spawnError => console.error(spawnError));
-      }
-    }
-  };
+	config.output = {
+		filename: 'app.bundle.js',
+		path: root('app'),
+		sourceMapFilename: '[file].map'
+		// chunkFilename: '[id].chunk.js'
+	}
 
-  return config;
-};
+	config.devServer = {
+		compress: false,
+		// stats: 'errors-only',
+		contentBase: Path.join(__dirname, 'app'),
+		headers: { 'Access-Control-Allow-Origin': '*' },
+		historyApiFallback: {
+			disableDotRule: false,
+			verbose: true,
+		},
+		hot: true,
+		inline: true,
+		lazy: false,
+		noInfo: false,
+		port,
+		publicPath: `http://localhost:${port}/`,
+		watchOptions: {
+			aggregateTimeout: 300,
+			ignored: /node_modules/,
+			poll: 100
+		},
+		setup() {
+			if (process.env.START_ELECTRON) {
+				spawn('npm', ['run', 'electron:dev'], {
+					env: process.env,
+					shell: true,
+					stdio: 'inherit'
+				})
+					.on('close', code => process.exit(code))
+					.on('error', spawnError => console.error(spawnError))
+			}
+		}
+	}
+
+	return config
+}
 
 // prod
 const ProdConfig = () => {
-  const config = <WebpackConfig>{};
+	const config: WebpackConfig = {}
 
-  config.devtool = "source-map";
+	config.devtool = 'source-map'
 
-  config.module = {
-    rules: [...DefaultProdConfig.rules, ...CustomProdConfig.rules]
-  };
+	config.mode = 'production'
 
-  config.performance = {
-    hints: "warning"
-  };
+	config.module = {
+		rules: [...DefaultProdConfig.rules, ...CustomProdConfig.rules]
+	}
 
-  config.plugins = [...DefaultProdConfig.plugins, ...CustomProdConfig.plugins];
+	config.performance = {
+		hints: 'warning'
+	}
 
-  config.resolve = {
-    modules: [root("src"), "node_modules"]
-  };
+	config.plugins = [...DefaultProdConfig.plugins, ...CustomProdConfig.plugins]
 
-  config.entry = {
-    app: "./src/boot"
-  };
+	config.resolve = {
+		modules: [root('src'), 'node_modules']
+	}
 
-  config.output = {
-    path: root("app"),
-    filename: "[name].bundle.js",
-    sourceMapFilename: "[file].map",
-    chunkFilename: "[id].chunk.js"
-  };
+	config.entry = {
+		app: './src/boot'
+	}
 
-  return config;
-};
+	config.output = {
+		chunkFilename: '[id].chunk.js',
+		filename: '[name].bundle.js',
+		path: root('app'),
+		sourceMapFilename: '[file].map'
+	}
+
+	return config
+}
 
 // main
 const MainConfig = () => {
-  const config = <WebpackConfig>{};
+	const config = {} as WebpackConfig
 
-  config.devtool = "source-map";
+	config.devtool = 'source-map'
 
-  config.target = "electron-main";
+	config.mode = 'development'
 
-  config.entry = ["./main"];
+	config.target = 'electron-main'
 
-  config.module = {
-    rules: [...DefaultMainConfig.rules]
-  };
+	config.entry = ['./main']
 
-  config.plugins = [...DefaultMainConfig.plugins];
+	config.module = {
+		rules: [...DefaultMainConfig.rules]
+	}
 
-  config.output = {
-    path: root("app"),
-    filename: "main.bundle.js"
-  };
+	config.plugins = [...DefaultMainConfig.plugins]
 
-  config.node = {
-    __dirname: false,
-    __filename: false
-  };
+	config.output = {
+		filename: 'main.bundle.js',
+		path: root('app')
+	}
 
-  return config;
-};
+	config.node = {
+		__dirname: false,
+		__filename: false
+	}
+
+	return config
+}
 
 // default
 const DefaultConfig = () => {
-  const config = <WebpackConfig>{};
+	const config = {} as WebpackConfig
 
-  config.resolve = {
-    modules: [root("app"), "node_modules"],
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
-  };
+	config.resolve = {
+		extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+		modules: [root('app'), 'node_modules'],
+	}
 
-  return config;
-};
+	return config
+}
 
 // webpack
 switch (ENV) {
-  case "prod":
-  case "production":
-    module.exports = EnvConfig.isMain
-      ? WebpackMerge({}, DefaultConfig(), MainConfig())
-      : WebpackMerge({}, DefaultConfig(), CommonConfig(), ProdConfig());
-    break;
-  case "dev":
-  case "development":
-  default:
-    module.exports = WebpackMerge(
-      {},
-      DefaultConfig(),
-      CommonConfig(),
-      DevConfig()
-    );
+	case 'prod':
+	case 'production':
+		module.exports = EnvConfig.isMain
+			? WebpackMerge({}, DefaultConfig(), MainConfig())
+			: WebpackMerge({}, DefaultConfig(), CommonConfig(), ProdConfig())
+		break
+	case 'dev':
+	case 'development':
+	default:
+		module.exports = WebpackMerge(
+			{},
+			DefaultConfig(),
+			CommonConfig(),
+			DevConfig()
+		)
 }

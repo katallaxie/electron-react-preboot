@@ -19,22 +19,22 @@
 export const CustomCommonConfig = {
   plugins: [],
   rules: []
-};
+}
 
 // dev
 export const CustomDevConfig = {
   plugins: [],
   rules: []
-};
+}
 
 // production
 export const CustomProdConfig = {
   plugins: [],
   rules: []
-};
+}
 
 // copy folders
-export const CustomCopyFolders = [];
+export const CustomCopyFolders = []
 
 // webpack-dev-server
-export const DevServerConfig = {};
+export const DevServerConfig = {}

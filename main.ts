@@ -31,8 +31,8 @@ const installExtensions = async () => {
 
 	return Promise.all(
 		extensions.map(name => installer.default(installer[name], forceDownload))
-	).catch(console.log);
-};
+	).catch(console.log)
+}
 
 /**
  * Add event listeners...
@@ -43,7 +43,7 @@ app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit();
 	}
-});
+})
 
 app.on('ready', async () => {
 	if (
@@ -80,4 +80,4 @@ app.on('ready', async () => {
 	mainWindow.on('closed', () => {
 		mainWindow = null;
 	});
-});
+})
