@@ -112,7 +112,7 @@ const DevConfig = () => {
 			ignored: /node_modules/,
 			poll: 100
 		},
-		setup() {
+		before() {
 			if (process.env.START_ELECTRON) {
 				spawn('npm', ['run', 'electron:dev'], {
 					env: process.env,

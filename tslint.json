@@ -7,7 +7,7 @@
   "rulesDirectory": [],
   "rules": {
     "semicolon": [
-      true,
+      false,
       "never"
     ],
     "interface-name": false,

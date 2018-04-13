@@ -36,7 +36,7 @@ interface WebpackConfig {
 		quiet?: boolean;
 		noInfo?: boolean;
 		watchOptions?: any;
-		setup?: any;
+		before?: any;
 	};
 	node?: {
 		process?: boolean;

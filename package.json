@@ -14,13 +14,15 @@
     "clean": "npm cache clean --force && npm run rimraf -- doc coverage public node_modules",
     "electron:dev": "cross-env NODE_ENV=development electron -r ts-node/register ./main.ts",
     "electron:prod": "cross-env NODE_ENV=production electron .",
+    "jest": "jest",
     "preclean:start": "npm run clean",
     "prepublish": "npm run build",
     "prestart": "npm run clean:app",
     "publish": "build --publish never",
     "server:dev": "cross-env NODE_ENV=development START_ELECTRON=1 webpack-dev-server --profile --color",
     "start": "cross-env NODE_ENV=development npm run server:dev",
-    "test": "jest",
+    "test": "cross-env NODE_ENV=test npm run jest -- --coverage --config jest.json",
+    "test:ci": "npm run test --runInBand",
     "watch": "cross-env NODE_ENV=development webpack -w"
   },
   "main": "./app/main.bundle.js",
@@ -75,12 +77,12 @@
     "bundlesize": "^0.17.0",
     "concurrently": "^3.4.0",
     "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^5.1.3",
+    "cross-env": "^5.1.4",
     "cross-spawn": "^6.0.5",
     "css-loader": "^0.28.4",
     "devtron": "^1.4.0",
     "electron": "^1.7.8",
-    "electron-builder": "^20.2.0",
+    "electron-builder": "^20.8.1",
     "electron-devtools-installer": "^2.2.0",
     "electron-reload": "^1.2.1",
     "enzyme": "^3.0.0",
@@ -89,7 +91,7 @@
     "express": "^4.15.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.0",
-    "html-webpack-plugin": "github:webpack-contrib/html-webpack-plugin",
+    "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.2",
     "jsdom": "^11.0.0",
@@ -122,28 +124,14 @@
     "webpack-dev-server": "^3.1.0",
     "webpack-merge": "^4.1.0"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "setupFiles": [
-      "raf/polyfill"
-    ],
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
-  },
   "dependencies": {
     "electron-debug": "^1.1.0",
     "history": "^4.6.1",
     "immutable": "^3.8.1",
-    "react": "^16.0.0",
+    "react": "^16.3.1",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^4.0.0",
-    "react-redux": "^5.0.5",
+    "react-redux": "^5.0.7",
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
     "react-router-redux": "^5.0.0-alpha.9",
