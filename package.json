@@ -97,7 +97,7 @@
     "jsdom": "^11.0.0",
     "postcss-sass": "^0.3.0",
     "prettier": "^1.5.3",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.7.2",
     "raf": "^3.3.2",
     "react-addons-test-utils": "^15.5.1",
     "react-devtools": "^3.0.0",
