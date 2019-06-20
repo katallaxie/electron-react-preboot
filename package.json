@@ -106,7 +106,7 @@
     "remote-redux-devtools": "^0.5.12",
     "rimraf": "^2.6.1",
     "sinon": "^6.0.0",
-    "spectron": "^4.0.0",
+    "spectron": "^6.0.0",
     "style-loader": "^0.23.0",
     "stylelint": "^9.1.1",
     "stylelint-config-standard": "^18.0.0",
