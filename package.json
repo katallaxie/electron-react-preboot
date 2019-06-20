@@ -142,7 +142,7 @@
     "redux-thunk": "^2.2.0",
     "rxjs": "^5.4.2",
     "source-map-support": "^0.5.0",
-    "styled-components": "^4.0.0",
+    "styled-components": "^4.3.2",
     "styled-tools": "^1.0.0",
     "tslint-react": "^3.0.0"
   },
