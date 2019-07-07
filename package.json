@@ -95,7 +95,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.2",
     "jsdom": "^11.0.0",
-    "postcss-sass": "^0.3.0",
+    "postcss-sass": "^0.4.0",
     "prettier": "^1.5.3",
     "prop-types": "^15.5.10",
     "raf": "^3.3.2",
