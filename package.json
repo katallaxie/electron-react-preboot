@@ -128,7 +128,7 @@
     "electron-debug": "^1.1.0",
     "history": "^4.6.1",
     "immutable": "^3.8.1",
-    "react": "^16.3.1",
+    "react": "^16.10.1",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^4.0.0",
     "react-redux": "^5.0.7",
